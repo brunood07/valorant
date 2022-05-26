@@ -14,15 +14,33 @@ export function AgentCard(props: AgentCardProps) {
 
   return (
     <>
-      {/* Small Mobile */}
-      <div className="tablet:hidden  w-full h-[240px] border-2 items-center border-brand-500 flex flex-row px-3">
+      {/* mobile */}
+      <div className="tablet:hidden sm:flex flex-column w-full h-[240px] border-2 items-center border-brand-500 px-3 shadow-md shadow-brand-300">
         <div className="flex flex-col">
           <img
             src={displayIcon}
             alt={displayName}
             className="w-[100px] h-[170px] object-cover mb-3 mt-6"
           />
-          {/* <p className="text-base font-bold">{role.displayName}</p> */}
+        </div>
+
+        <div className="flex flex-col w-[250px] px-5">
+          <p className="text-lg font-bold">{displayName}</p>
+          <p className="text-sm text-justify">
+            {description.substring(0, 150)}...
+          </p>
+        </div>
+      </div>
+
+      {/* Tablet */}
+
+      <div className="laptop:hidden sm:hidden tablet:flex flex-row w-full h-[240px] border-2 items-center border-brand-500 px-3">
+        <div className="flex flex-col">
+          <img
+            src={displayIcon}
+            alt={displayName}
+            className="w-[100px] h-[170px] object-cover mb-3 mt-6"
+          />
         </div>
 
         <div className="flex flex-col w-[250px] px-5">
@@ -34,7 +52,7 @@ export function AgentCard(props: AgentCardProps) {
       </div>
 
       {/* Desktop */}
-      <div className="sm:hidden laptop:flex w-[450px] h-[240px] border-2 border-brand-500 items-center justify-items-center flex-row ">
+      <div className="hidden laptop:flex w-[450px] h-[240px] border-2 border-brand-500 items-center justify-items-center flex-row ">
         <div className="w-[200px] flex flex-col items-center justify-between py-10">
           <p className="text-2xl font-bold">{displayName}</p>
           <p>{role.displayName}</p>
