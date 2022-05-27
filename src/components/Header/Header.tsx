@@ -4,20 +4,27 @@ import { useState } from "react";
 import { HeaderProps } from "./Header.types";
 
 export function Header(props: HeaderProps) {
-  const { langage = "pt-br", onChangeLangage } = props;
+  const { onChangeLangage } = props;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [language, setLanguage] = useState("pt-BR");
 
   const menuOptions = [
     {
-      displayName: "Inicio",
+      displayNamePT: "Inicio",
+      displayNameEN: "Home",
+      displayNameES: "Comienzo",
       route: "/",
     },
     {
-      displayName: "Agentes",
+      displayNamePT: "Agentes",
+      displayNameEN: "Agents",
+      displayNameES: "Agentes",
       route: "/agents",
     },
     {
-      displayName: "Mapas",
+      displayNamePT: "Mapas",
+      displayNameEN: "Maps",
+      displayNameES: "Mapas",
       route: "/maps",
     },
   ];
@@ -42,23 +49,17 @@ export function Header(props: HeaderProps) {
         <nav className="w-[200px] hidden laptop:block">
           <ul>
             <div className="flex flex-row justify-between">
-              <li>
-                <a href="#" className="hover:opacity-70">
-                  Inicio
-                </a>
-              </li>
-
-              <li>
-                <a href="#" className="hover:opacity-70">
-                  Agentes
-                </a>
-              </li>
-
-              <li>
-                <a href="#" className="hover:opacity-70">
-                  Mapas
-                </a>
-              </li>
+              {menuOptions.map((item, index) => (
+                <li key={index}>
+                  <a href={item.route}>
+                    {language === "pt-BR"
+                      ? item.displayNamePT
+                      : language === "en-US"
+                      ? item.displayNameEN
+                      : item.displayNameES}
+                  </a>
+                </li>
+              ))}
             </div>
           </ul>
         </nav>
@@ -71,7 +72,7 @@ export function Header(props: HeaderProps) {
           }`}
         >
           <div className="w-screen flex flex-col h-screen">
-            <div className="flex flex-row h-[65px] items-center justify-between border-b-4 border-slate-900 px-4">
+            <div className="flex flex-row h-[70px] items-center justify-between border-b-4 border-slate-900 px-4">
               <img
                 src="logo.png"
                 alt="Logo do Valorant"
@@ -87,18 +88,36 @@ export function Header(props: HeaderProps) {
                   key={index}
                   className="w-screen flex h-[50px] border-b-2 border-slate-900 items-center justify-center"
                 >
-                  <a href={item.route}>{item.displayName}</a>
+                  <a href={item.route}>
+                    {language === "pt-BR"
+                      ? item.displayNamePT
+                      : language === "en-US"
+                      ? item.displayNameEN
+                      : item.displayNameES}
+                  </a>
                 </button>
               ))}
             </ul>
 
             <div className="flex flex-col w-screen h-[50px] items-center justify-center mb-2 fixed bottom-0">
-              <p>Escolha uma língua</p>
+              <p>
+                {language === "pt-BR"
+                  ? "Escolha uma língua"
+                  : language === "en-US"
+                  ? "Choose you language"
+                  : "Elige tu idioma"}
+              </p>
               <div
                 className="flex flex-row w-[100px] justify-between mt-2"
                 aria-label="Clique para mudar a página para Português"
               >
-                <button className="" onClick={() => onChangeLangage("pt-BR")}>
+                <button
+                  className=""
+                  onClick={() => {
+                    onChangeLangage("pt-BR");
+                    setLanguage("pt-BR");
+                  }}
+                >
                   <img
                     src="pt-br.svg"
                     alt="Bandeira do Brasil"
@@ -108,7 +127,10 @@ export function Header(props: HeaderProps) {
 
                 <button
                   className=""
-                  onClick={() => onChangeLangage("en-US")}
+                  onClick={() => {
+                    onChangeLangage("en-US");
+                    setLanguage("en-US");
+                  }}
                   aria-label="Click here to change the langage to english"
                 >
                   <img
@@ -120,7 +142,10 @@ export function Header(props: HeaderProps) {
 
                 <button
                   className=""
-                  onClick={() => onChangeLangage("es-ES")}
+                  onClick={() => {
+                    onChangeLangage("es-ES");
+                    setLanguage("es-ES");
+                  }}
                   aria-label="Haga clic aquí para cambiar a español"
                 >
                   <img
