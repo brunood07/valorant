@@ -1,3 +1,4 @@
 export interface HeaderProps {
-  umaProp: string;
+  langage?: "pt-BR" | "en-EN" | "es-ES";
+  onChangeLangage: (lang: string) => void;
 }

@@ -1,21 +1,28 @@
 import type { NextPage } from "next";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { AgentCard } from "../components/AgentCard";
 import { Header } from "../components/Header";
 import useAgents from "../hooks/useAgents";
 
 const Home: NextPage = () => {
+  const [language, setLanguage] = useState("pt-BR" || "en-US" || "es-ES");
   const { fetchAgents, agents } = useAgents();
 
   useEffect(() => {
-    fetchAgents();
-  }, []);
+    fetchAgents(language);
+  }, [language]);
+
+  console.log(language);
+
+  const handleLangChange = (lang: string) => {
+    setLanguage(lang);
+  };
 
   console.log(agents);
 
   return (
     <>
-      <Header umaProp={""} />
+      <Header onChangeLangage={handleLangChange} />
       <div className="grid sm-grid-cols-1 laptop:grid-cols-4 w-full h-full items-center justify-between sm:justify-center px-4 py-4">
         {agents.map((item, index) => (
           <div key={index} className="m-0 sm:my-2">
@@ -38,28 +45,6 @@ const Home: NextPage = () => {
             />
           </div>
         ))}
-        {/* <AgentCard
-          displayName={"Fade"}
-          description={""}
-          displayIcon={""}
-          bustPortrait={
-            "https://media.valorant-api.com/agents/dade69b4-4f5a-8528-247b-219e5a1facd6/bustportrait.png"
-          }
-          background={""}
-          role={{
-            displayName: "Initiator",
-            description:
-              "Initiators challenge angles by setting up their team to enter contested ground and push defenders away.",
-            displayIcon:
-              "https://media.valorant-api.com/agents/roles/1b47567f-8f7b-444b-aae3-b0c634622d10/displayicon.png",
-          }}
-          abilities={{
-            slot: "",
-            displayName: "",
-            description: "",
-            displayIcon: "",
-          }}
-        /> */}
       </div>
     </>
   );

@@ -20,13 +20,15 @@ export interface AgentsData {
 export default function useAgents() {
   const [agents, setAgents] = useState<AgentsData[]>([] as AgentsData[]);
 
-  async function fetchAgents() {
-    await api.get("/agents?isPlayableCharacter=true").then((res) => {
-      const agentsAUX = res.data.data;
+  async function fetchAgents(lang = "pt-BR") {
+    await api
+      .get(`/agents?isPlayableCharacter=true&language=${lang}`)
+      .then((res) => {
+        const agentsAUX = res.data.data;
 
-      console.log(agentsAUX);
-      setAgents(agentsAUX);
-    });
+        console.log(agentsAUX);
+        setAgents(agentsAUX);
+      });
   }
 
   return { agents, fetchAgents };
