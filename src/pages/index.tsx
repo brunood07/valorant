@@ -15,7 +15,7 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <Header logoImg={""} />
+      <Header umaProp={""} />
       <div className="grid sm-grid-cols-1 laptop:grid-cols-4 w-full h-full items-center justify-between sm:justify-center px-4 py-4">
         {agents.map((item, index) => (
           <div key={index} className="m-0 sm:my-2">

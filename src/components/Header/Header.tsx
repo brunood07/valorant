@@ -20,10 +20,7 @@ export function Header(props: HeaderProps) {
         />
 
         <button className="laptop:hidden" onClick={handleMenu}>
-          <img
-            src={isMenuOpen ? "close-icon.png" : "menu-icon.svg"}
-            alt="menu"
-          />
+          <img src="menu-icon.svg" alt="menu" />
         </button>
 
         <nav className="w-[200px] hidden laptop:block">
@@ -52,10 +49,20 @@ export function Header(props: HeaderProps) {
       </div>
 
       {isMenuOpen && (
-        <div className="bg-brand-500 w-full h-screen absolute">
-          <div className="w-screen flex flex-col justify-between h-screen">
+        <div className="bg-brand-500 w-full h-screen fixed top-0">
+          <div className="w-screen flex flex-col h-screen">
+            <div className="flex flex-row h-[65px] items-center justify-between px-4">
+              <img
+                src="logo.png"
+                alt="Logo do Valorant"
+                className="w-[60px] h-[45px]"
+              />
+              <button className="laptop:hidden" onClick={handleMenu}>
+                <img src="close-icon.png" alt="menu" />
+              </button>
+            </div>
             <ul>
-              <li className="w-screen flex h-[50px] border-b-2 border-slate-900 items-center justify-center">
+              <li className="w-screen flex h-[50px] border-b-2 border-t-4 border-slate-900 items-center justify-center">
                 <a>Inicio</a>
               </li>
               <li className="w-screen flex h-[50px] border-b-2 border-slate-900 items-center justify-center">
@@ -66,9 +73,9 @@ export function Header(props: HeaderProps) {
               </li>
             </ul>
 
-            <div className="flex flex-col w-screen h-[50px] items-center justify-center mb-2">
+            <div className="flex flex-col w-screen h-[50px] items-center justify-center mb-2 fixed bottom-0">
               <p>Escolha uma língua</p>
-              <div className="flex flex-row w-[100px] justify-between">
+              <div className="flex flex-row w-[100px] justify-between ">
                 <button className="" onClick={() => null}>
                   <img
                     src="pt-br.svg"
