@@ -2,6 +2,7 @@ import { useState } from "react";
 import { api } from "../services/api";
 
 export interface AgentsData {
+  uuid: string;
   displayName: string;
   description: string;
   displayIcon: string;

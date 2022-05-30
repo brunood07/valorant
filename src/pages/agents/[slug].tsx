@@ -65,7 +65,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   // console.log(typeof agents);
   const paths = agents.map((agent) => ({
     params: {
-      slug: agent.displayName,
+      slug: agent.uuid,
       displayName: agent.displayName,
     },
   }));
@@ -85,7 +85,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   const agents = data.data as AgentData[];
 
-  const agent = agents.find((agent: AgentData) => agent.displayName === slug);
+  const agent = agents.find((agent: AgentData) => agent.uuid === slug);
 
   console.log(agent);
 

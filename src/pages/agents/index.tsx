@@ -24,6 +24,7 @@ export default function Agents() {
         {agents.map((item, index) => (
           <div key={index} className="m-0 sm:my-2">
             <AgentCard
+              uuid={item.uuid}
               displayName={item.displayName}
               description={item.description}
               displayIcon={item.displayIcon}

@@ -5,6 +5,7 @@ import { AgentCardProps } from "./AgentCard.types";
 
 export function AgentCard(props: AgentCardProps) {
   const {
+    uuid,
     bustPortrait,
     displayName,
     abilities,
@@ -16,7 +17,7 @@ export function AgentCard(props: AgentCardProps) {
   return (
     <>
       {/* mobile */}
-      <Link href={`/agents/${displayName}`}>
+      <Link href={`/agents/${uuid}`}>
         <a>
           <div className="tablet:hidden sm:flex flex-column w-full h-[240px] border-2 items-center border-brand-500 px-3 shadow-md shadow-brand-300">
             <div className="flex flex-col">
@@ -57,7 +58,7 @@ export function AgentCard(props: AgentCardProps) {
       </div>
 
       {/* Desktop */}
-      <Link href={`/agents/${displayName}`}>
+      <Link href={`/agents/${uuid}`}>
         <a>
           <div className="hidden laptop:flex w-[450px] h-[240px] border-2 border-brand-500 items-center justify-items-center flex-row ">
             <div className="w-[200px] flex flex-col items-center justify-between py-10">
