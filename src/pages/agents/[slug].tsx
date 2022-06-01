@@ -14,7 +14,7 @@ export interface AgentData {
   bustPortrait: string;
   background: string;
   isPlayableCharacter: boolean;
-  role: { displayName: string; description: string; displayIcon: string };
+  role: { displayName: string; description: string; roleIcon: string };
   abilities: {
     slot: string;
     displayName: string;
@@ -50,6 +50,13 @@ export default function Agent(props: AgentData) {
           className="w-[150px] h-[150px] border-2 border-slate-900 mt-4"
         />
         <section className="px-6 mt-4 text-justify">{description}</section>
+
+        <p>{role.displayName}</p>
+        <img
+          src={role.roleIcon}
+          alt={role.displayName}
+          className="w-[150px] h-[150px] border-2 border-slate-900 mt-4"
+        />
       </div>
     </>
   );
@@ -62,7 +69,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   const agents = data.data as AgentData[];
 
-  // console.log(typeof agents);
   const paths = agents.map((agent) => ({
     params: {
       slug: agent.uuid,
@@ -96,7 +102,20 @@ export const getStaticProps: GetStaticProps = async (context) => {
     bustPortrait,
     displayIcon,
     description,
+    role,
   } = agent as AgentData;
 
-  return { props: { displayName, bustPortrait, displayIcon, description } };
+  return {
+    props: {
+      displayName,
+      bustPortrait,
+      displayIcon,
+      description,
+      role: {
+        roleIcon: role.displayIcon,
+        roleDescription: role.description,
+        roleDisplayName: role.displayName,
+      },
+    },
+  };
 };

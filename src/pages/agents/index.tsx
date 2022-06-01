@@ -1,18 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { AgentCard } from "../../components/AgentCard";
 import { Header } from "../../components/Header";
+import { AgentsContext } from "../../context/AgentContext";
 import useAgents from "../../hooks/useAgents";
 
 export default function Agents() {
-  const [language, setLanguage] = useState("pt-BR" || "en-US" || "es-ES");
-  const { fetchAgents, agents } = useAgents();
+  const { agents, lang, setLang, fetchAgents } = useContext(AgentsContext);
 
   useEffect(() => {
-    fetchAgents(language);
-  }, [language]);
+    fetchAgents(lang);
+  }, [lang]);
 
   const handleLangChange = (lang: string) => {
-    setLanguage(lang);
+    setLang(lang);
   };
 
   console.log(agents);
@@ -46,4 +46,7 @@ export default function Agents() {
       </div>
     </>
   );
+}
+function AgentContext(AgentContext: any): {} {
+  throw new Error("Function not implemented.");
 }

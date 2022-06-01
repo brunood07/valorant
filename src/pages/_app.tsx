@@ -1,9 +1,14 @@
 import type { AppProps } from "next/app";
+import { AgentsContextProvider } from "../context/AgentContext";
 
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <AgentsContextProvider>
+      <Component {...pageProps} />
+    </AgentsContextProvider>
+  );
 }
 
 export default MyApp;
